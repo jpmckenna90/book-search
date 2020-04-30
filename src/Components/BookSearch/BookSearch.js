@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import "./style.css";
+import getBooks from "../../utils/api";
 
 function BookSearch() {
+  const [search, setSearch] = useState("The Hobbit");
+
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const bookSearch = (event) => {
+    event.preventDefault();
+    getBooks();
+  };
+
   return (
     <Row>
       <Col lg={8}>
@@ -13,13 +25,18 @@ function BookSearch() {
               <Form>
                 <Form.Group controlId="bookSearch">
                   <Form.Label>Book Title</Form.Label>
-                  <Form.Control type="input" placeholder="Enter book name" />
+                  <Form.Control
+                    type="input"
+                    placeholder="Enter book name"
+                    onChange={handleSearchChange}
+                  />
                   <Form.Text className="text-muted">
                     Enter a book title here.
                   </Form.Text>
+                  <p>{search}</p>
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" onClick={bookSearch}>
                   Submit
                 </Button>
               </Form>
