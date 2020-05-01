@@ -10,9 +10,10 @@ function BookSearch() {
     setSearch(event.target.value);
   };
 
-  const bookSearch = (event) => {
+  const findBooks = (event) => {
     event.preventDefault();
-    getBooks();
+    console.log("we findin");
+    getBooks(search);
   };
 
   return (
@@ -36,7 +37,7 @@ function BookSearch() {
                   <p>{search}</p>
                 </Form.Group>
 
-                <Button variant="primary" type="submit" onClick={bookSearch}>
+                <Button variant="primary" type="submit" onClick={findBooks}>
                   Submit
                 </Button>
               </Form>
